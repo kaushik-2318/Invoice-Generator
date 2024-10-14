@@ -22,8 +22,7 @@ createRoot(document.getElementById('root')!).render(
         rtl={false}
         pauseOnFocusLoss
         draggable
-        theme="dark"
-        transition:Bounce/>
+        theme="dark"/>
     </BrowserRouter>
   </StrictMode>,
 )
