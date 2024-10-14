@@ -20,10 +20,11 @@ interface Invoice {
     gst: number
 }
 
-
-
 export const createPDF = async (invoice: Invoice): Promise<Buffer> => {
 
+    try {
+        
+ 
     const user = await userModel.findById(invoice.userId);
 
     if (!user) {
@@ -169,4 +170,8 @@ export const createPDF = async (invoice: Invoice): Promise<Buffer> => {
 
     await browser.close();
     return Buffer.from(pdfBuffer);
+    } catch (error) {
+        console.log(error);
+        throw new Error('PDF generation failed');
+    }
 };

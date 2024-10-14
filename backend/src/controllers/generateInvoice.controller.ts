@@ -3,9 +3,10 @@ import Invoice from '../models/invoice.model';
 import { createPDF } from '../utils/generatePDF';
 
 export const generatePDF = async (req: Request, res: Response): Promise<void> => {
-    const { invoiceId } = req.params;
-
+    
     try {
+        const { invoiceId } = req.params;
+
         const invoice = await Invoice.findById(invoiceId).populate('userId');
 
         if (!invoice) {
@@ -35,7 +36,7 @@ export const generatePDF = async (req: Request, res: Response): Promise<void> =>
         res.send(pdfBuffer);
 
     } catch (error) {
-        console.error('Error generating PDF:', error);
+        console.log('Error generating PDF:', error);
         res.status(500).json({ message: 'Error generating PDF', error });
     }
 };
