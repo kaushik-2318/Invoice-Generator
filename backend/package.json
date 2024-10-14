@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/index",
-    "build": "tsc"
+    "build": "tsc -p .",
+    "dev": "tsc-watch --onSuccess \"npm start\""
   },
   "keywords": [],
   "author": "",
