@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { userModel, userSchemaValidation } from "../models/User";
-import  blacklistModel  from "../models/Blacklist"
+import { userModel, userSchemaValidation } from "../models/user.model";
+import blacklistModel from "../models/blacklist.model"
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -55,11 +55,7 @@ const registerUser = async (req: Request, res: Response, next: NextFunction): Pr
             name,
         });
 
-        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET as string, {
-            expiresIn: "168h",
-        });
-
-        res.status(201).json({ message: "User Created Successfully", user, token });
+        res.status(201).json({ message: "User Created Successfully" });
         return;
     } catch (error: any) {
         res.status(500).json({ message: "Server error: " + error.message });
@@ -96,7 +92,7 @@ const loginUser = async (req: Request, res: Response, next: NextFunction): Promi
                 expiresIn: "168h",
             });
 
-            res.status(201).json({ message: "Login Successfully", user, token });
+            res.status(201).json({ message: "Login Successfully", token });
             return;
         } else {
             res.status(401).json({ message: "Email or Password incorrect" });
