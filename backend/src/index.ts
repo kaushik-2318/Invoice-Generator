@@ -6,10 +6,10 @@ import cors from "cors";
 dotenv.config();
 
 const corsOptions: cors.CorsOptions = {
-    origin: "*",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+  origin: "*",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 const app: Application = express();
@@ -29,5 +29,5 @@ app.use("/product", productRoutes);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

@@ -1,34 +1,30 @@
-import puppeteer from 'puppeteer';
-import { Buffer } from 'buffer';
-import mongoose from 'mongoose';
-import { userModel } from '../models/user.model';
-
+import puppeteer from "puppeteer";
+import { Buffer } from "buffer";
+import mongoose from "mongoose";
+import { userModel } from "../models/user.model";
 
 interface Product {
-    name: string;
-    quantity: number;
-    rate: number;
-    amount: number;
+  name: string;
+  quantity: number;
+  rate: number;
+  amount: number;
 }
 
 interface Invoice {
-    userId: mongoose.Types.ObjectId;
-    products: Product[];
-    date: Date;
-    amount: number,
-    totalamount: number,
-    gst: number
+  userId: mongoose.Types.ObjectId;
+  products: Product[];
+  date: Date;
+  amount: number;
+  totalamount: number;
+  gst: number;
 }
 
 export const createPDF = async (invoice: Invoice): Promise<Buffer> => {
-
-    try {
-        
- 
+  try {
     const user = await userModel.findById(invoice.userId);
 
     if (!user) {
-        throw new Error("User not found");
+      throw new Error("User not found");
     }
 
     const browser = await puppeteer.launch();
@@ -37,9 +33,8 @@ export const createPDF = async (invoice: Invoice): Promise<Buffer> => {
     const userName = user.name;
     const userEmail = user.email;
 
-
     const htmlContent = `
- <html>
+<html>
 <head>
     <title>Invoice</title>
 </head>
@@ -105,7 +100,9 @@ export const createPDF = async (invoice: Invoice): Promise<Buffer> => {
                     Total Amount</th>
             </tr>
 
-            ${invoice.products.map((product: Product) => `
+            ${invoice.products
+              .map(
+                (product: Product) => `
             <tr>
                 <td style="font-family: Inter; font-size: 17px; font-weight: 500; text-align: center; padding: 12px;">
                     ${product.name}</td>
@@ -116,7 +113,9 @@ export const createPDF = async (invoice: Invoice): Promise<Buffer> => {
                 <td style="font-family: Inter; font-size: 17px; font-weight: 500; text-align: center; padding: 12px;">
                     ₹ ${product.rate * product.quantity}</td>
             </tr>
-            `).join('')}
+            `
+              )
+              .join("")}
         </table>
     </div>
     <div style="display: flex; justify-content:end; margin-inline: 10px; ">
@@ -161,17 +160,16 @@ export const createPDF = async (invoice: Invoice): Promise<Buffer> => {
         order. Rest assured, it will receive our prompt and dedicated attention.
     </footer>
 </body>
-
 </html>
   `;
 
     await page.setContent(htmlContent);
-    const pdfBuffer = await page.pdf({ format: 'A4' });
+    const pdfBuffer = await page.pdf({ format: "A4" });
 
     await browser.close();
     return Buffer.from(pdfBuffer);
-    } catch (error) {
-        console.log(error);
-        throw new Error('PDF generation failed');
-    }
+  } catch (error) {
+    console.log(error);
+    throw new Error("PDF generation failed");
+  }
 };
