@@ -6,7 +6,7 @@ import cors from "cors";
 dotenv.config();
 
 const corsOptions: cors.CorsOptions = {
-    origin: "https://pdf-generator-ruby.vercel.app",
+    origin: "*",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],

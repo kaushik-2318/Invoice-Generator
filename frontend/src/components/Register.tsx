@@ -22,7 +22,7 @@ const Register: React.FC = () => {
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         try {
-            const res = await axios.post(`https://pdf-generator-r879.onrender.com/auth/register`, data);
+            const res = await axios.post(`${import.meta.env.VITE_REACT_API_URI}/auth/register`, data);
             console.log(res);
             toast.success(res.data.message);
             navigate("/login");
@@ -32,6 +32,8 @@ const Register: React.FC = () => {
                 setError("serverError", { message: errorMessage });
                 toast.error(errorMessage);
             } else {
+                console.log(err);
+                
                 setError("serverError", { message: "An unknown error occurred!" });
                 toast.error("An unknown error occurred!");
             }
