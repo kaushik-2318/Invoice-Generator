@@ -22,7 +22,7 @@ const Register: React.FC = () => {
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         try {
-            const res = await axios.post(`http://localhost:8080/auth/register`, data);
+            const res = await axios.post(`https://pdf-generator-r879.onrender.com/auth/register`, data);
             console.log(res);
             toast.success(res.data.message);
             navigate("/login");

@@ -64,7 +64,7 @@ const AddProduct: React.FC = () => {
         }
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`http://localhost:8080/product/addproducts`, { products }, {
+            await axios.post(`https://pdf-generator-r879.onrender.com/product/addproducts`, { products }, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 }
@@ -89,7 +89,7 @@ const AddProduct: React.FC = () => {
         setIsGeneratingPDF(true);
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://localhost:8080/product/invoices/${urlId}`, {
+            const response = await axios.get(`https://pdf-generator-r879.onrender.com/product/invoices/${urlId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -110,7 +110,7 @@ const AddProduct: React.FC = () => {
     };
 
     const handleLogout = () => {
-        axios.post(`http://localhost:8080/auth/logout`, {},{
+        axios.post(`https://pdf-generator-r879.onrender.com/auth/logout`, {},{
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },

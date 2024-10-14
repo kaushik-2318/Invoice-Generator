@@ -20,7 +20,7 @@ const Login: React.FC = () => {
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         try {
-            const response = await axios.post(`http://localhost:8080/auth/login`, data);
+            const response = await axios.post(`https://pdf-generator-r879.onrender.com/auth/login`, data);
             const token = response.data.token;
             if (token) {
                 localStorage.setItem("token", token);
