@@ -139,38 +139,44 @@ const AddProduct: React.FC = () => {
             <div onClick={handleLogout} className='absolute right-5 top-2 text-red-500 text-lg cursor-pointer'>
                 Logout
             </div>
-            <div>
-                <h1 className='text-xl font-bold text-white md:text-5xl py-10'>Add Products</h1>
-
-                <div className='flex gap-10'>
-                    <div>
+            <div className='font-["Exo"] px-5'>
+                <h1 className='text-3xl font-bold text-white md:text-5xl py-10 font-["Exo"]'>Add Products</h1>
+                <div className='grid grid-cols-4 grid-rows-2 place-content-center place-items-center gap-5'>
+                    {/* <div> */}
                         <label htmlFor="name" className="block mb-2 text-sm font-medium text-white">
                             Product Name
                         </label>
+
+                    <label htmlFor="price" className="block mb-2 text-sm font-medium text-white">
+                        Product Price
+                    </label>
+
+                    <label htmlFor="qty" className="block mb-2 text-sm font-medium text-white">
+                        Quantity
+                    </label>
+
+                    <div></div>
+                    
                         <input className="bg-gray-700 border border-gray-600 text-white rounded-lg block w-full p-2.5 placeholder-gray-400 outline-none duration-200"
                             type="text" id="name" value={productName}
                             onChange={(e) => setProductName(e.target.value)} placeholder="Product Name" />
-                    </div>
+                    {/* </div> */}
 
-                    <div>
-                        <label htmlFor="price" className="block mb-2 text-sm font-medium text-white">
-                            Product Price
-                        </label>
+                    {/* <div> */}
+                      
                         <input className="bg-gray-700 border border-gray-600 text-white rounded-lg block w-full p-2.5 placeholder-gray-400 outline-none duration-200"
                             type="number" id="price" value={price}
                             onChange={(e) => setPrice(Number(e.target.value))} placeholder="Price" />
-                    </div>
+                    {/* </div> */}
 
-                    <div>
-                        <label htmlFor="qty" className="block mb-2 text-sm font-medium text-white">
-                            Quantity
-                        </label>
+                    {/* <div> */}
+                       
                         <input className="bg-gray-700 border border-gray-600 text-white rounded-lg block w-full p-2.5 placeholder-gray-400 outline-none duration-200"
                             type="number" id="qty" value={quantity}
                             onChange={(e) => setQuantity(Number(e.target.value))} placeholder="Quantity" min="1" />
-                    </div>
+                    {/* </div> */}
 
-                    <button className='relative top-3' onClick={addProductToList}>
+                    <button onClick={addProductToList}>
                         <img className='w-10' src={plus} alt="Add Product To List" />
                     </button>
                 </div>

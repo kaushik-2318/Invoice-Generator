@@ -48,13 +48,13 @@ const Login: React.FC = () => {
 
     return (
         <>
-            <div className="flex bg-gray-900 items-center justify-center h-screen w-full flex-col gap-5">
+            <div className="flex bg-gray-900 items-center justify-center h-screen w-full flex-col gap-5 font-['Montserrat'] p-5">
                 <div>
                     <img className="w-60" src={Logo} alt="logo" />
                 </div>
-                <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-sm xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-sm xl:p-0 bg-gray-800 border-gray-700">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl ">
+                        <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl font-['Exo']">
                             Sign in to your account
                         </h1>
 
@@ -83,7 +83,7 @@ const Login: React.FC = () => {
                             </button>
                         </form>
 
-                        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                        <p className="text-sm font-light text-gray-400">
                             Don’t have an account yet?{" "}
                             <Link to="/register" className="font-medium text-[#3b82f6] hover:underline "  >
                                 Sign up
