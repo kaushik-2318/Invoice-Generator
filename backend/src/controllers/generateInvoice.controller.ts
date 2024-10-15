@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Invoice from "../models/invoice.model";
 import { createPDF } from "../utils/generatePDF";
 
+
 export const generatePDF = async (
   req: Request,
   res: Response
