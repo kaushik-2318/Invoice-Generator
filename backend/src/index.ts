@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import express, { Application, Request, Response, NextFunction } from "express";
+import express, { Application, Request, Response } from "express";
 import mongooseConnection from "./config/mongoose.config";
 import cors from "cors";
 
@@ -23,6 +23,10 @@ import userRoutes from "./routes/user.routes";
 import productRoutes from "./routes/product.routes";
 
 mongooseConnection();
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("/ Page");
+})
 
 app.use("/auth", userRoutes);
 app.use("/product", productRoutes);

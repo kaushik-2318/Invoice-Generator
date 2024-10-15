@@ -94,23 +94,42 @@ const AddProduct: React.FC = () => {
     if (isGeneratingPDF) return;
     setIsGeneratingPDF(true);
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(
-        `${import.meta.env.VITE_REACT_API_URI}/product/invoices/${urlId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          responseType: "blob",
-        },
-      );
+      // const token = localStorage.getItem("token");
 
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", `invoice-${urlId}.pdf`);
-      document.body.appendChild(link);
-      link.click();
+      window.location.href = `${import.meta.env.VITE_REACT_API_URI}/product/invoice/${urlId}`;
+
+      // const response = await fetch(`${import.meta.env.VITE_REACT_API_URI}/product/invoice/${urlId}`,{
+      //   method: 'GET',
+      //   headers:{
+      //     Authorization: `Bearer ${token}`,
+      //   }
+      // });
+
+      // console.log(response);
+
+
+      // await axios.get(
+      //   `${import.meta.env.VITE_REACT_API_URI}/product/invoices/${urlId}`,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //     responseType: "blob", //New Tab Opening
+      //   },
+      // ).then((response) => {
+
+      //   console.log(response);
+        
+      //   // const url = window.URL.createObjectURL(new Blob([response.data]));
+      //   // const link = document.createElement("a");
+      //   // link.href = url;
+      //   // link.setAttribute("download", `invoice-${urlId}.pdf`);
+      //   // document.body.appendChild(link);
+      //   // link.click();
+
+      // }).catch((err) => {
+      //   console.log(err);
+      // })
     } catch (err) {
       console.log(err);
     } finally {
