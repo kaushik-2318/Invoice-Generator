@@ -2,7 +2,6 @@ import puppeteer from "puppeteer";
 import { Buffer } from "buffer";
 import mongoose from "mongoose";
 import { userModel } from "../models/user.model";
-import  {launchPuppeteer}  from '../puppeteerConfig';
 
 interface Product {
   name: string;
@@ -27,8 +26,8 @@ export const createPDF = async (invoice: Invoice): Promise<Buffer> => {
     if (!user) {
       throw new Error("User not found");
     }
-      const browser = await launchPuppeteer();
-    // const browser = await puppeteer.launch();
+
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     const userName = user.name;
