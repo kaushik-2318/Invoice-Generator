@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import Invoice from "../models/invoice.model";
 import { createPDF } from "../utils/generatePDF";
 
-
 export const generatePDF = async (
   req: Request,
   res: Response
@@ -33,7 +32,7 @@ export const generatePDF = async (
 
     res.set({
       "Content-Type": "application/pdf",
-      "Content-Disposition": `attachment; filename=invoice-${invoiceId}.pdf`,
+      // "Content-Disposition": `attachment; filename=invoice-${invoiceId}.pdf`,
     });
 
     res.send(pdfBuffer);

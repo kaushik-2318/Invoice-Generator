@@ -167,6 +167,7 @@ export const createPDF = async (invoice: Invoice): Promise<Buffer> => {
     const pdfBuffer = await page.pdf({ format: "A4" });
 
     await browser.close();
+    
     return Buffer.from(pdfBuffer);
   } catch (error) {
     console.log(error);
