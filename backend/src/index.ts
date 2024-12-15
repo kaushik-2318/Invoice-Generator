@@ -26,7 +26,7 @@ import productRoutes from "./routes/product.routes";
 mongooseConnection();
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+   res.send('Express Typescript on Vercel')
 })
 
 app.use("/auth", userRoutes);
