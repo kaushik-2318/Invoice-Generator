@@ -94,42 +94,7 @@ const AddProduct: React.FC = () => {
     if (isGeneratingPDF) return;
     setIsGeneratingPDF(true);
     try {
-      // const token = localStorage.getItem("token");
-
       window.location.href = `${import.meta.env.VITE_REACT_API_URI}/product/invoice/${urlId}`;
-
-      // const response = await fetch(`${import.meta.env.VITE_REACT_API_URI}/product/invoice/${urlId}`,{
-      //   method: 'GET',
-      //   headers:{
-      //     Authorization: `Bearer ${token}`,
-      //   }
-      // });
-
-      // console.log(response);
-
-
-      // await axios.get(
-      //   `${import.meta.env.VITE_REACT_API_URI}/product/invoices/${urlId}`,
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${token}`,
-      //     },
-      //     responseType: "blob", //New Tab Opening
-      //   },
-      // ).then((response) => {
-
-      //   console.log(response);
-        
-      //   // const url = window.URL.createObjectURL(new Blob([response.data]));
-      //   // const link = document.createElement("a");
-      //   // link.href = url;
-      //   // link.setAttribute("download", `invoice-${urlId}.pdf`);
-      //   // document.body.appendChild(link);
-      //   // link.click();
-
-      // }).catch((err) => {
-      //   console.log(err);
-      // })
     } catch (err) {
       console.log(err);
     } finally {
@@ -168,67 +133,34 @@ const AddProduct: React.FC = () => {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-start bg-gray-900 text-white">
-      <div
-        onClick={handleLogout}
-        className="absolute right-5 top-2 cursor-pointer text-lg text-red-500"
-      >
+      <div onClick={handleLogout} className="absolute right-5 top-2 cursor-pointer text-lg text-red-500">
         Logout
       </div>
+
       <div className='px-5 font-["Exo"]'>
         <h1 className='py-10 font-["Exo"] text-3xl font-bold text-white md:text-5xl'>
           Add Products
         </h1>
         <div className="grid grid-cols-4 grid-rows-2 place-content-center place-items-center gap-5">
-          <label
-            htmlFor="name"
-            className="mb-2 block text-sm font-medium text-white"
-          >
+          <label htmlFor="name" className="mb-2 block text-sm font-medium text-white">
             Product Name
           </label>
 
-          <label
-            htmlFor="price"
-            className="mb-2 block text-sm font-medium text-white"
-          >
+          <label htmlFor="price" className="mb-2 block text-sm font-medium text-white">
             Product Price
           </label>
 
-          <label
-            htmlFor="qty"
-            className="mb-2 block text-sm font-medium text-white"
-          >
+          <label htmlFor="qty" className="mb-2 block text-sm font-medium text-white">
             Quantity
           </label>
 
           <div></div>
 
-          <input
-            className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 outline-none duration-200"
-            type="text"
-            id="name"
-            value={productName}
-            onChange={(e) => setProductName(e.target.value)}
-            placeholder="Product Name"
-          />
+          <input className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 outline-none duration-200" type="text" id="name" value={productName} onChange={(e) => setProductName(e.target.value)} placeholder="Product Name" />
 
-          <input
-            className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 outline-none duration-200"
-            type="number"
-            id="price"
-            value={price}
-            onChange={(e) => setPrice(Number(e.target.value))}
-            placeholder="Price"
-          />
+          <input className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 outline-none duration-200" type="number" id="price" value={price} onChange={(e) => setPrice(Number(e.target.value))} placeholder="Price" />
 
-          <input
-            className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 outline-none duration-200"
-            type="number"
-            id="qty"
-            value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value))}
-            placeholder="Quantity"
-            min="1"
-          />
+          <input className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 outline-none duration-200" type="number" id="qty" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} placeholder="Quantity" min="1" />
 
           <button onClick={addProductToList}>
             <img className="w-10" src={plus} alt="Add Product To List" />
@@ -240,12 +172,7 @@ const AddProduct: React.FC = () => {
             Product List
           </h3>
 
-          <button
-            type="button"
-            onClick={handleSubmit}
-            className={`mb-2 me-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white outline-none hover:bg-blue-700 ${isGeneratingPDF ? "disabled:cursor-not-allowed disabled:bg-blue-400" : ""}`}
-            disabled={isGeneratingPDF}
-          >
+          <button type="button" onClick={handleSubmit} className={`mb-2 me-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white outline-none hover:bg-blue-700 ${isGeneratingPDF ? "disabled:cursor-not-allowed disabled:bg-blue-400" : ""}`} disabled={isGeneratingPDF}>
             {isGeneratingPDF ? "Generating..." : "Generate PDF Invoice"}
           </button>
         </div>

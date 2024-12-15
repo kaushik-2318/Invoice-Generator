@@ -1,18 +1,23 @@
 import dotenv from "dotenv";
-import express, { Application, Request, Response } from "express";
+import express, { Application } from "express";
 import mongooseConnection from "./config/mongoose.config";
 import cors from "cors";
 
+
 dotenv.config();
 
-const corsOptions: cors.CorsOptions = {
-  origin: "*",
+const app: Application = express();
+
+const corsOptions = {
+  origin: "https://pdf-generator-rho.vercel.app",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-const app: Application = express();
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
@@ -24,14 +29,10 @@ import productRoutes from "./routes/product.routes";
 
 mongooseConnection();
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("/ Page");
-})
-
 app.use("/auth", userRoutes);
 app.use("/product", productRoutes);
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 7000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

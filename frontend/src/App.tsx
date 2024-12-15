@@ -10,27 +10,10 @@ function App() {
   return (
     <>
       <Routes>
-        <Route
-          path="/"
-          element={
-            isAuthenticated() ? (
-              <Navigate to="/addproduct" replace />
-            ) : (
-              <Navigate to="/register" replace />
-            )
-          }
-        />
+        <Route path="/" element={isAuthenticated() ? (<Navigate to="/addproduct" replace />) : (<Navigate to="/register" replace />)} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route
-          path="/addproduct"
-          element={
-            <ProtectedRoute>
-              {" "}
-              <AddProduct />{" "}
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/addproduct" element={<ProtectedRoute>{" "}<AddProduct />{" "}</ProtectedRoute>} />
       </Routes>
     </>
   );
