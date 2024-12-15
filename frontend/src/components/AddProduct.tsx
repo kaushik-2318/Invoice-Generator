@@ -66,7 +66,7 @@ const AddProduct: React.FC = () => {
       const token = localStorage.getItem("token");
       await axios
         .post(
-          `https://pdf-generator-backend.vercel.app/product/addproducts`,
+          `${import.meta.env.VITE_REACT_API_URI}/product/addproducts`,
           { products },
           {
             headers: {

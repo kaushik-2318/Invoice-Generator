@@ -20,7 +20,7 @@ const Register: React.FC = () => {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
 
-      const res = await axios.post(`https://pdf-generator-backend.vercel.app/auth/register`, data,
+      const res = await axios.post(`${import.meta.env.VITE_REACT_API_URI}/auth/register`, data,
         {
           headers: {
             "Content-Type": "application/json",
