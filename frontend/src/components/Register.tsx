@@ -13,25 +13,24 @@ type Inputs = {
 };
 
 const Register: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    clearErrors,
-    setError,
-    formState: { errors, isSubmitting },
-  } = useForm<Inputs>();
+  const { register, handleSubmit, clearErrors, setError, formState: { errors, isSubmitting }, } = useForm<Inputs>();
 
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_REACT_API_URI}/auth/register`,
-        data,
+
+      const res = await axios.post(`${import.meta.env.VITE_REACT_API_URI}/auth/register`, data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          }
+        }
       );
       console.log(res);
       toast.success(res.data.message);
       navigate("/login");
+
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const errorMessage =
@@ -39,8 +38,8 @@ const Register: React.FC = () => {
         setError("serverError", { message: errorMessage });
         toast.error(errorMessage);
       } else {
-        console.log(err);
 
+        console.log(err);
         setError("serverError", { message: "An unknown error occurred!" });
         toast.error("An unknown error occurred!");
       }
@@ -67,16 +66,9 @@ const Register: React.FC = () => {
               <div className="text-red-500">{errors.serverError.message}</div>
             )}
 
-            <form
-              className="space-y-4 md:space-y-6"
-              onSubmit={handleSubmit(onSubmit)}
-              onChange={handleInputChange}
-            >
+            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(onSubmit)} onChange={handleInputChange} >
               <div>
-                <label
-                  htmlFor="name"
-                  className="mb-2 flex flex-row items-center justify-between text-sm font-medium text-white"
-                >
+                <label htmlFor="name" className="mb-2 flex flex-row items-center justify-between text-sm font-medium text-white">
                   Full Name
                   {errors.name && (
                     <span className="text-left font-light text-red-500">
@@ -84,25 +76,10 @@ const Register: React.FC = () => {
                     </span>
                   )}
                 </label>
-                <input
-                  {...register("name", {
-                    required: "Name is required",
-                    minLength: { value: 3, message: "Minimum Length is 3" },
-                    maxLength: { value: 50, message: "Maximum Length is 50" },
-                  })}
-                  type="text"
-                  name="name"
-                  id="name"
-                  className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 outline-none duration-200 focus:border-[#2563eb]"
-                  placeholder="Full Name"
-                  required
-                />
+                <input {...register("name", { required: "Name is required", minLength: { value: 3, message: "Minimum Length is 3" }, maxLength: { value: 50, message: "Maximum Length is 50" }, })} type="text" name="name" id="name" className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 outline-none duration-200 focus:border-[#2563eb]" placeholder="Full Name" required />
               </div>
               <div>
-                <label
-                  htmlFor="email"
-                  className="mb-2 flex flex-row items-center justify-between text-sm font-medium text-white"
-                >
+                <label htmlFor="email" className="mb-2 flex flex-row items-center justify-between text-sm font-medium text-white">
                   Your email
                   {errors.email && (
                     <span className="text-left font-light text-red-500">
@@ -110,28 +87,11 @@ const Register: React.FC = () => {
                     </span>
                   )}
                 </label>
-                <input
-                  {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                      message: "Please enter a valid email",
-                    },
-                  })}
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 outline-none duration-200 focus:border-[#2563eb]"
-                  placeholder="example@example.com"
-                  required
-                />
+                <input {...register("email", { required: "Email is required", pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: "Please enter a valid email", }, })} type="email" name="email" id="email" className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 outline-none duration-200 focus:border-[#2563eb]" placeholder="example@example.com" required />
               </div>
 
               <div>
-                <label
-                  htmlFor="password"
-                  className="mb-2 flex flex-row items-center justify-between text-sm font-medium text-white"
-                >
+                <label htmlFor="password" className="mb-2 flex flex-row items-center justify-between text-sm font-medium text-white">
                   Password
                   {errors.password && (
                     <span className="text-left font-light text-red-500">
@@ -139,35 +99,16 @@ const Register: React.FC = () => {
                     </span>
                   )}
                 </label>
-                <input
-                  {...register("password", {
-                    required: "Password is required",
-                    minLength: { value: 8, message: "Minimum Length is 8" },
-                    maxLength: { value: 12, message: "Maximum Length is 12" },
-                  })}
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="••••••••"
-                  className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 outline-none duration-200 focus:border-[#2563eb]"
-                  required
-                />
+                <input {...register("password", { required: "Password is required", minLength: { value: 8, message: "Minimum Length is 8" }, maxLength: { value: 12, message: "Maximum Length is 12" }, })} type="password" name="password" id="password" placeholder="••••••••" className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 outline-none duration-200 focus:border-[#2563eb]" required />
               </div>
 
-              <button
-                disabled={isSubmitting}
-                type="submit"
-                className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white outline-none duration-200 hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-blue-400"
-              >
+              <button disabled={isSubmitting} type="submit" className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white outline-none duration-200 hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-blue-400">
                 Create Account
               </button>
 
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have Account?{" "}
-                <Link
-                  to="/login"
-                  className="font-medium text-[#3b82f6] hover:underline"
-                >
+                <Link to="/login" className="font-medium text-[#3b82f6] hover:underline">
                   Sign In
                 </Link>
               </p>
