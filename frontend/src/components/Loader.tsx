@@ -1,11 +1,14 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { Context } from "../context/serverContext";
 
 const Loader: React.FC = () => {
 
     // const [timeLeft, setTimeLeft] = useState(30);
     const [isLoading, setIsLoading] = useState(true);
     const [serverReady, setServerReady] = useState(false);
+    const [isError, setIsError] = useState("Waking up the server...");
+    const { setIsAlive } = useContext(Context);
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_REACT_API_URI}/check`)
@@ -13,17 +16,18 @@ const Loader: React.FC = () => {
                 console.log('Server is ready:', response.data);
                 setServerReady(true);
                 setIsLoading(false);
+                setIsAlive(true)
+                setIsError("Server is ready");
             })
-            .catch((error) => {
-                console.error('Error reaching server:', error);
-                setIsLoading(false);
+            .catch((err) => {
+                setIsError("Error: " + err);
             });
     }, []);
     return (
         <div className='flex flex-col justify-center items-center h-screen bg-[#1e1e2d] text-[#ffffff]'>
-            {isLoading ? (
+            {isLoading && !serverReady ? (
                 <div className='text-center text-xl'>
-                    <h2>Waking up the server...</h2>
+                    <h2>{isError}</h2>
                     <div>
                         {/* {`Estimated Time: ${timeLeft}s`} */}
                     </div>
