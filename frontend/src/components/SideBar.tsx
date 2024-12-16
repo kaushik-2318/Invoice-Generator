@@ -28,14 +28,14 @@ function SideBar({ setShowSidebar }: { setShowSidebar: React.Dispatch<React.SetS
     };
 
     const handleLogout = () => {
-        axios.post(`${import.meta.env.VITE_REACT_API_URI}/auth/logou`, {}, {
+        axios.post(`${import.meta.env.VITE_REACT_API_URI}/auth/logout`, {}, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             }
         })
             .then(() => {
                 localStorage.removeItem("token");
-                navigate("/");
+                navigate("/login");
                 window.location.reload();
                 setShowSidebar(false)
             })
