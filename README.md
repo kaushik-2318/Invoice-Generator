@@ -79,11 +79,11 @@ Follow these steps to set up the project:
 
    Create a `.env` file in the `frontend` directory with the following environment variables:
 
-    ```bash
+   ```bash
 
-    VITE_REACT_API_URI = <YOUR BACKEND URL>
+   VITE_REACT_API_URI = <YOUR BACKEND URL>
 
-    ```
+   ```
 
 5. **Set up MongoDB:**
 
@@ -131,7 +131,6 @@ Follow these steps to set up the project:
 
 - **GET** `/invoices` – Retrieve all invoices for the logged-in user
 - **GET** `/product/invoices/:invoiceId` – Generate and download invoice as PDF
-
 
 ## Troubleshooting
 
