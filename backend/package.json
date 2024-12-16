@@ -6,7 +6,7 @@
     "start": "node dist/index.js",
     "build": "tsc",
     "dev": "tsc-watch --onSuccess \"npm start\"",
-    "postinstall": "node node_modules/puppeteer/install.mjs"
+    "postinstall": "npx puppeteer browsers install chrome"
   },
   "keywords": [],
   "author": "",
