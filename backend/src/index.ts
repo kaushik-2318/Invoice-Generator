@@ -25,6 +25,10 @@ import productRoutes from "./routes/product.routes";
 
 mongooseConnection();
 
+app.get("/", (req, res) => {
+  res.send('Hello World');
+});
+
 app.use("/auth", userRoutes);
 app.use("/product", productRoutes);
 
