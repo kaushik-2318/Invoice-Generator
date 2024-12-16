@@ -9,11 +9,7 @@ export const generatePDF = async (
   try {
     const { invoiceId } = req.params;
 
-    console.log("check1")
-
     const invoice = await Invoice.findById(invoiceId).populate("userId");
-
-    console.log("check2")
 
 
     if (!invoice) {
@@ -28,22 +24,15 @@ export const generatePDF = async (
       amount: product.productquantity * product.productrate,
     }));
 
-    console.log("check3")
-
     const updatedInvoice = {
       ...invoice.toObject(),
       products: mappedProducts,
     };
 
-    console.log("check4")
-
     const pdfBuffer = await createPDF(updatedInvoice);
-
-    console.log("check5")
 
     res.set({
       "Content-Type": "application/pdf",
-      // "Content-Disposition": `attachment; filename=invoice-${invoiceId}.pdf`,
     });
 
     res.send(pdfBuffer);
