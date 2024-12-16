@@ -19,7 +19,6 @@ const isAuthenticated = async (
       res.status(401).send({ message: "Unauthorized" });
       return;
     }
-
     const token = authHeader.split(" ")[1];
 
     const decoded = jwt.verify(
@@ -33,14 +32,14 @@ const isAuthenticated = async (
       res.status(401).json({ message: "Unauthorized" });
       return;
     }
-
+    
     const isTokenBlacklisted = await blacklistModel.findOne({ token });
-
+    
     if (isTokenBlacklisted) {
       res.status(401).json({ message: "Token is blacklisted" });
       return;
     }
-
+    
     req.user = user;
 
     next();

@@ -11,6 +11,7 @@ import { Context } from "./context/serverContext.tsx";
 import History from "./components/History.tsx";
 import SideBar from "./components/SideBar";
 import menu from "/icons/menu-3-line.svg"
+import EditProfile from "./components/EditProfile.tsx";
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
               <Route path="/history" element={<History />} />
               <Route path="/register" element={<Register />} />
               <Route path="/addproduct" element={<ProtectedRoute>{" "}<AddProduct />{" "}</ProtectedRoute>} />
+              <Route path="/edit" element={<ProtectedRoute>{" "}<EditProfile />{" "}</ProtectedRoute>} />
             </Routes>
           </>
         )}

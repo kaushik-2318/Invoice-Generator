@@ -58,7 +58,7 @@ function SideBar({ setShowSidebar }: { setShowSidebar: React.Dispatch<React.SetS
                     <div ref={menuRef} className="mt-5">
                         <div className="flex flex-col gap-5">
                             <Link onClick={handleClose} to={path === '/addproduct' ? '/history' : '/'} className="hover:bg-slate-600 duration-300 transition-all cursor-pointer p-1 rounded-md pl-3">{path === '/addproduct' ? 'History' : 'Home'}</Link>
-                            <Link onClick={handleClose} to="" className="hover:bg-slate-600 duration-300 transition-all cursor-pointer p-1 rounded-md pl-3">Edit Profile</Link>
+                            <Link onClick={handleClose} to="/edit" className="hover:bg-slate-600 duration-300 transition-all cursor-pointer p-1 rounded-md pl-3">Edit Profile</Link>
                             <div onClick={handleLogout} className="text-red-500 hover:bg-slate-600 duration-300 transition-all cursor-pointer p-1 rounded-md pl-3">Logout</div>
                         </div>
                     </div>
