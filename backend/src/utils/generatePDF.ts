@@ -33,6 +33,9 @@ export const createPDF = async (invoice: Invoice): Promise<Buffer> => {
     const userName = user.name;
     const userEmail = user.email;
 
+      const today = new Date();
+      const formattedDate = today.toLocaleDateString('en-GB'); 
+
     const htmlContent = `
 <html>
 <head>
@@ -81,7 +84,7 @@ export const createPDF = async (invoice: Invoice): Promise<Buffer> => {
             </div>
         </div>
         <div style="color: #FFFFFF; font-size: 18px;">
-            Date:12/04/23
+            Date:${formattedDate}
         </div>
     </div>
 
@@ -150,7 +153,7 @@ export const createPDF = async (invoice: Invoice): Promise<Buffer> => {
 
     <div style="font-family: Inter; font-size:20px; font-weight: 500; line-height: 13.39px; text-align: left; margin-inline: 10px;">
         Date: <span
-            style="font-family: Inter; font-size: 20px; font-weight: 700; line-height: 13.39px; text-align: left;">12/04/23</span>
+            style="font-family: Inter; font-size: 20px; font-weight: 700; line-height: 13.39px; text-align: left;">${formattedDate}</span>
     </div>
 
 
