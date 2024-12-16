@@ -29,6 +29,9 @@ app.get("/", (req, res) => {
   res.send('Hello World');
 });
 
+app.get("/check", (req, res) => {
+  res.status(200).json({ message: 'Server is up!' });
+})
 app.use("/auth", userRoutes);
 app.use("/product", productRoutes);
 
