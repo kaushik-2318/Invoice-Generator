@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { Context } from "../context/serverContext";
+import LoaderAnimation from './LoaderAnimation';
 
 const Loader: React.FC = () => {
 
-    // const [timeLeft, setTimeLeft] = useState(30);
     const [isLoading, setIsLoading] = useState(true);
     const [serverReady, setServerReady] = useState(false);
     const [isError, setIsError] = useState("Waking up the server...");
@@ -24,16 +24,14 @@ const Loader: React.FC = () => {
             });
     }, []);
     return (
-        <div className='flex flex-col justify-center items-center h-screen bg-[#1e1e2d] text-[#ffffff]'>
+        <div className='flex flex-col justify-center items-center h-screen bg-[#111827] text-[#ffffff]'>
             {isLoading && !serverReady ? (
                 <div className='text-center text-xl'>
+                    <LoaderAnimation />
                     <h2>{isError}</h2>
-                    <div>
-                        {/* {`Estimated Time: ${timeLeft}s`} */}
-                    </div>
                 </div>
             ) : (
-                <div className='text-2xl text-[#4CAF50]'>Server is Ready!</div>
+                <div className='text-3xl text-[#4CAF50]'>Server is Ready!</div>
             )}
         </div>
     )

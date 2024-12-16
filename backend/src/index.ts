@@ -8,7 +8,7 @@ dotenv.config();
 const app: Application = express();
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://pdfgenerator-rhv.vercel.app",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],

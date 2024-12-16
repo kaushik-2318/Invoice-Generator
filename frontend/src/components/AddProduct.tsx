@@ -3,7 +3,6 @@ import axios from "axios";
 import plus from "/icons/add-circle-fill.svg";
 import Table from "./Table";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 interface Product {
   name: string;
@@ -18,7 +17,6 @@ const AddProduct: React.FC = () => {
   const [quantity, setQuantity] = useState<number>(1);
   const [urlId, setUrlId] = useState<string>("");
   const [isGeneratingPDF, setIsGeneratingPDF] = useState<boolean>(false);
-  const navigate = useNavigate();
 
   const addProductToList = () => {
     if (!productName.trim()) {
@@ -102,29 +100,6 @@ const AddProduct: React.FC = () => {
     }
   };
 
-  const handleLogout = () => {
-    axios
-      .post(
-        `${import.meta.env.VITE_REACT_API_URI}/auth/logout`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        },
-      )
-      .then(() => {
-        localStorage.removeItem("token");
-        navigate("/");
-        window.location.reload();
-      })
-      .catch((error) => {
-        if (error.status === 401) {
-          navigate("/signin");
-        }
-      });
-  };
-
   useEffect(() => {
     if (urlId) {
       handleGeneratePDF();
@@ -133,9 +108,6 @@ const AddProduct: React.FC = () => {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-start bg-gray-900 text-white">
-      <div onClick={handleLogout} className="absolute right-5 top-2 cursor-pointer text-lg text-red-500">
-        Logout
-      </div>
 
       <div className='px-5 font-["Exo"]'>
         <h1 className='py-10 font-["Exo"] text-3xl font-bold text-white md:text-5xl'>
@@ -178,7 +150,7 @@ const AddProduct: React.FC = () => {
         </div>
         <Table products={products} />
       </div>
-    </div>
+    </div >
   );
 };
 
