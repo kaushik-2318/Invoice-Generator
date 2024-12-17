@@ -30,7 +30,7 @@ function History() {
 
     return (
         <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-start">
-            <div className='px-5 font-["Exo"] w-[70%]'>
+            <div className='px-5 font-["Exo"] md:w-[70%]'>
                 <h1 className='py-10 font-["Exo"] text-3xl font-bold text-white md:text-5xl w-full '>
                     Generated Bills
                 </h1>
@@ -60,7 +60,7 @@ function History() {
                                         <div className="mb-2 block text-sm font-medium text-white">
                                             {invoice.date}
                                         </div>
-                                        <div className="mb-2 block text-sm font-medium text-white">
+                                        <div className="mb-2 block text-sm font-medium text-white truncate overflow-hidden text-ellipsis w-full max-w-xs">
                                             {invoice.invoiceId}
                                         </div>
                                         <div className="mb-2 block text-sm font-medium text-white">

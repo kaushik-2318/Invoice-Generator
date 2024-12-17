@@ -1,3 +1,4 @@
+// TDOD Navebar Auto Close on click outside
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import close from '/icons/close-fill.svg'
 import axios from 'axios';
@@ -48,7 +49,7 @@ function SideBar({ setShowSidebar }: { setShowSidebar: React.Dispatch<React.SetS
 
     return (
         <div ref={backgroundRef} className="bg-[#00000081] min-h-screen w-full fixed z-50 border-red-900 flex justify-end items-center font-['Catamaran']">
-            <div ref={sidebarRef} className="fixed bg-gray-900 w-[20%] min-h-screen text-lg text-white">
+            <div ref={sidebarRef} className="fixed bg-gray-900 w-[250px] lg:w-[20%] min-h-screen text-lg text-white">
                 <div className='absolute top-7 right-5 cursor-pointer hover:bg-slate-600 duration-300 transition-all p-1 rounded-full' onClick={handleClose}>
                     <img src={close} width={30} alt="Close Icon" />
                 </div>

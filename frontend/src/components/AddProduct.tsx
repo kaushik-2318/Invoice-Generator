@@ -109,7 +109,7 @@ const AddProduct: React.FC = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-start bg-gray-900 text-white">
 
-      <div className='px-5 font-["Exo"]'>
+      <div className='px-3 font-["Exo"] text-sm'>
         <h1 className='py-10 font-["Exo"] text-3xl font-bold text-white md:text-5xl'>
           Add Products
         </h1>

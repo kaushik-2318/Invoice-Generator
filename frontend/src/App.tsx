@@ -27,9 +27,6 @@ function App() {
   return (
     <div className="cursor-default">
       <Context.Provider value={{ isAlive, setIsAlive }}>
-        {/* {
-          (showSidebar && path != '/login' && path != '/register') && <SideBar setShowSidebar={setShowSidebar} />
-        } */}
         {(path !== '/login' && path !== '/register') && (
           <>
             {showSidebar && <SideBar setShowSidebar={setShowSidebar} />}

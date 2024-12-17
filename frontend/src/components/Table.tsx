@@ -23,33 +23,27 @@ const Table: React.FC<TableProps> = ({ products }) => {
         <table className="w-full text-left text-sm text-gray-400">
           <thead className="bg-gray-700 text-xs uppercase text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="md:px-6 py-3">
                 Product name
               </th>
 
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="md:px-6 py-3">
                 Quantity
               </th>
 
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="md:px-6 py-3">
                 Price
               </th>
 
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="md:px-6 py-3">
                 Total Price
               </th>
             </tr>
           </thead>
           <tbody>
             {products.map((product, index) => (
-              <tr
-                key={index}
-                className="border-b border-gray-700 odd:bg-gray-900 even:bg-gray-800"
-              >
-                <th
-                  scope="row"
-                  className="whitespace-nowrap px-6 py-4 font-medium text-white"
-                >
+              <tr key={index} className="border-b border-gray-700 odd:bg-gray-900 even:bg-gray-800"  >
+                <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white" >
                   {product.name}
                 </th>
                 <td className="px-6 py-4">{product.quantity}</td>
