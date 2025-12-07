@@ -41,7 +41,7 @@ setInterval(
     const response = await fetch(`${process.env.URL}`);
     console.log(`Uptime Ping: ${new Date().toISOString()} - Status: ${response.status}`);
   },
-  1000 * 1,
+  1000 * 60 * 5,
 );
 
 const PORT = process.env.PORT || 7000;
