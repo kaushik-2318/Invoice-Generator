@@ -36,14 +36,6 @@ app.get("/check", (req, res) => {
 app.use("/auth", userRoutes);
 app.use("/product", productRoutes);
 
-setInterval(
-  async () => {
-    const response = await fetch(`${process.env.URL}`);
-    console.log(`Uptime Ping: ${new Date().toISOString()} - Status: ${response.status}`);
-  },
-  1000 * 60 * 5,
-);
-
 const PORT = process.env.PORT || 7000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
